@@ -154,13 +154,40 @@ vector<int> twoSum(vector<int> arr, int target){
 // }
 
 
+int largestelement(vector<int>& arr){
+    int largest = arr[0];
+    for(int i = 0 ; i < arr.size(); i++){
+        if(arr[i]>largest){
+            largest = arr[i];
+        }
+    }
+    return largest;
+}
+
+int secondlargestelement(vector<int>& arr){
+    int largest = arr[0];
+    int second = arr[1];
+    // 1,2,3,8,6,3,4,5
+    for(int i = 0 ; i < arr.size(); i++){
+        if(arr[i]>largest){
+            second =largest;
+            largest = arr[i];
+        }else if(arr[i]<largest && arr[i]>second){
+            second = arr[i];
+        }
+    }
+    cout<<"largest : "<<largest<<" second "<<second <<endl;
+    return second;
+}
+
+
 
 
 int main(){
-    vector<int> arr = {1,2,3 ,3,4,5};
+    vector<int> arr = {1,2,3,8,3,4,5};
     int target = 7;
 
-    int result = subarraySum(arr, target);
+    int result = secondlargestelement(arr);
     cout << "Ans : " << result << endl;
 
 }
