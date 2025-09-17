@@ -43,9 +43,26 @@ vector<int> bubblesort(vector<int> arr){
 }
 
 
+vector<int> insertionsort(vector<int> arr){
+    int n = arr.size();
+    
+    for(int i = 0 ; i<n; i++){
+        for(int j = 1; j<=i;j++){
+            if(arr[i]>arr[j-1]){
+                break;
+            }
+            // cout<<arr[i]<<" and " <<arr[j-1]<<" " ;
+            swap(arr[i],arr[j-1]);
+        }
+        cout<<endl;
+    }
+    return arr;
+}
+
+
 
 int main() { vector<int> arr = {23, 45, 34, 67, 6, 87, 45}; 
-    vector<int> sortedArr = bubblesort(arr); 
+    vector<int> sortedArr = insertionsort(arr); 
     cout << "Sorted array: "; 
     for (int num : sortedArr) { 
         cout << num << " ";
