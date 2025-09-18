@@ -76,27 +76,68 @@ vector <int> insertionsort(vector<int> arr){
 }
 
 
+// void merge(vector<int>& arr, int low, int mid, int high){
+//     vector<int> temp;
+//     int left = low;
+//     int  right = mid+1;
+
+//     while(left <= mid && right <=high){
+
+//         if(arr[left]>arr[right] ){
+//             temp.push_back(arr[right]);
+//             right++;
+//         }else{
+//             temp.push_back(arr[left]);
+//             left++;
+//         }
+
+//     }
+//     while(left <= mid){
+//         temp.push_back(arr[left]);
+//         left++;
+//     }
+//     while(right <= high){
+//         temp.push_back(arr[right]);
+//         right++;
+//     }
+
+//     for(int k = low; k<= high; k++){
+//         arr[k] = temp[k-low];
+//     }
+
+// }
+
+// void mergesort(vector<int>& arr, int low, int high){
+//     if(low >= high) return;
+//     int mid = (low+high)/2;
+//     mergesort(arr, low, mid);
+//     mergesort(arr, mid+1, high);
+//     merge(arr,low,mid,high);
+
+// }
+
+
 void merge(vector<int>& arr, int low, int mid, int high){
-    vector<int> temp;
     int left = low;
-    int  right = mid+1;
+    int right = mid+1;
+    vector<int> temp;
 
-    while(left <= mid && right <=high){
-
-        if(arr[left]>arr[right] ){
+    while(left<=mid && right<=high){
+        if(arr[left]>arr[right]){
             temp.push_back(arr[right]);
             right++;
         }else{
             temp.push_back(arr[left]);
             left++;
         }
+    }
 
-    }
-    while(left <= mid){
+    while(left<=mid){
         temp.push_back(arr[left]);
-        left++;
+        left++; 
     }
-    while(right <= high){
+
+    while(right<=high){
         temp.push_back(arr[right]);
         right++;
     }
@@ -104,16 +145,14 @@ void merge(vector<int>& arr, int low, int mid, int high){
     for(int k = low; k<= high; k++){
         arr[k] = temp[k-low];
     }
-
 }
 
-void mergesort(vector<int>& arr, int low, int high){
+void mergesort(vector<int>& arr,int low, int high){
     if(low >= high) return;
     int mid = (low+high)/2;
     mergesort(arr, low, mid);
     mergesort(arr, mid+1, high);
-    merge(arr,low,mid,high);
-
+    merge(arr, low, mid, high);
 }
 
 int main() { vector<int> arr = {23, 45, 34, 67, 6, 87, 45}; 
