@@ -155,11 +155,93 @@ void mergesort(vector<int>& arr,int low, int high){
     merge(arr, low, mid, high);
 }
 
+
+// int partition(vector<int>& arr, int low, int high){
+    
+//     int pivot = arr[low];
+//     int i = low , j = high;
+//     cout<<"At starting i is "<<i<<" and j is "<<j<<endl;
+//     while(i < j){
+//         while(i <= high && arr[i]<= pivot) {
+//             cout <<"hula "<<i<<" - "<<" "<<arr[i]<<" _ "<<pivot<<"      ";
+//             i++;
+//         }
+//         while(j >=low && arr[j]> pivot)j--;
+//         if(i<j){
+//             swap(arr[i],arr[j]);
+//         }
+//     }
+//     swap(arr[low],arr[j]);
+//     cout<<"Pivot is "<<pivot<<" i is "<<i<<" and j is "<<j<<"      ";
+//     for(int k = 0; k< arr.size(); k++){
+//         cout<<arr[k]<<" ";
+//     }
+//     cout<<endl;
+//     return j;
+
+
+// }
+
+// void qs(vector<int>& arr, int low, int high){
+//     if(low<high){
+//         int pindex = partition(arr, low, high);
+//         qs(arr, low, pindex-1); 
+//         qs(arr, pindex+1, high);
+//     }   
+// }
+
+
+// vector<int> quicksort(vector<int>& arr){
+//     int low = 0;
+//     int high = arr.size()-1;
+//     qs(arr,low,high);
+//     return arr;
+// }
+
+
+
+
+
+
+int partition(vector<int>& arr, int low , int high){
+    int pivot = arr[low];
+    int i = low, j= high;
+
+    while(i<j){
+        while(i<=high && arr[i]<= pivot)i++;
+        while(j>=low && arr[j] > pivot)j--;
+        if(i<j){
+            swap(arr[j],arr[i]);
+        }
+        
+    }
+    swap(arr[low],arr[j]);
+    return j;
+}
+
+
+
+void qs(vector<int>& arr,int low, int high){
+    if(low<high){
+        int pindex = partition(arr, low, high);
+        qs(arr, low, pindex-1);
+        qs(arr, pindex+1, high);
+    }
+}
+
+
+vector<int> quicksort(vector<int>& arr){
+    int low = 0;
+    int high = arr.size()-1;
+    qs(arr, low, high);
+    return arr;
+}
+
 int main() { vector<int> arr = {23, 45, 34, 67, 6, 87, 45}; 
-    // vector<int> sortedArr = mergesort(arr , 0 , 6); 
-    mergesort(arr , 0 , 6); 
+    vector<int> sortedArr = quicksort(arr); 
+    // quicksort(arr , 0 , 6); 
     cout << "Sorted array: "; 
-    for (int num : arr) { 
+    for (int num : sortedArr) { 
         cout << num << " ";
     } 
     cout << endl;
