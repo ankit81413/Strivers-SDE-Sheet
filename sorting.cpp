@@ -203,27 +203,55 @@ void mergesort(vector<int>& arr,int low, int high){
 
 
 
-int partition(vector<int>& arr, int low , int high){
+// int partition(vector<int>& arr, int low , int high){
+//     int pivot = arr[low];
+//     int i = low, j= high;
+
+//     while(i<j){
+//         while(i<=high && arr[i]<= pivot)i++;
+//         while(j>=low && arr[j] > pivot)j--;
+//         if(i<j){
+//             swap(arr[j],arr[i]);
+//         }
+        
+//     }
+//     swap(arr[low],arr[j]);
+//     return j;
+// }
+
+// void qs(vector<int>& arr,int low, int high){
+//     if(low<high){
+//         int pindex = partition(arr, low, high);
+//         qs(arr, low, pindex-1);
+//         qs(arr, pindex+1, high);
+//     }
+// }
+
+// vector<int> quicksort(vector<int>& arr){
+//     int low = 0;
+//     int high = arr.size()-1;
+//     qs(arr, low, high);
+//     return arr;
+// }
+
+int partition(vector<int>& arr, int low, int high){
     int pivot = arr[low];
-    int i = low, j= high;
+    int i = low, j = high;
 
     while(i<j){
-        while(i<=high && arr[i]<= pivot)i++;
-        while(j>=low && arr[j] > pivot)j--;
-        if(i<j){
-            swap(arr[j],arr[i]);
+        while(i<=high && arr[i]<=pivot)i++;
+        while(j>=low && arr[j]>pivot)j--;
+        if(i < j){
+            swap(arr[i],arr[j]);
         }
-        
     }
     swap(arr[low],arr[j]);
     return j;
 }
 
-
-
 void qs(vector<int>& arr,int low, int high){
     if(low<high){
-        int pindex = partition(arr, low, high);
+        int pindex = partition(arr,low,high);
         qs(arr, low, pindex-1);
         qs(arr, pindex+1, high);
     }
@@ -233,9 +261,10 @@ void qs(vector<int>& arr,int low, int high){
 vector<int> quicksort(vector<int>& arr){
     int low = 0;
     int high = arr.size()-1;
-    qs(arr, low, high);
+    qs(arr,low,high);
     return arr;
 }
+
 
 int main() { vector<int> arr = {23, 45, 34, 67, 6, 87, 45}; 
     vector<int> sortedArr = quicksort(arr); 
