@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <map>
+#include <bits/stdc++.h>
 using namespace std;
 
 
@@ -182,12 +183,50 @@ int secondlargestelement(vector<int>& arr){
 
 
 
+//Rotate the array by kth index
+
+void rotateby1(vector<int>& arr){
+	int temp = arr[0];
+	for(int i = 1;i<arr.size(); i++){
+		arr[i-1] = arr[i];
+}
+arr[arr.size()-1]=temp;
+}
+
+
+//Rotate the array by kth index
+
+void rotateby2(vector<int>& arr){
+    int temp = arr[0];
+    int temp2 = arr[1];
+    for(int i = 2; i<arr.size(); i++){
+        arr[i-2] = arr[i];
+    }
+    arr[arr.size()-2] = temp;
+    arr[arr.size()-1] = temp2;
+}
+
+
+void rotatebyk(vector<int>& arr, int k){
+    reverse(arr.begin(),arr.begin()+k);
+    reverse(arr.begin()+k,arr.end());
+    reverse(arr.begin(),arr.end());
+}
+
+
+
+
+
 
 int main(){
-    vector<int> arr = {1,2,3,8,3,4,5};
+    vector<int> arr = {1,2,3,4,5,6,7};
     int target = 7;
 
-    int result = secondlargestelement(arr);
-    cout << "Ans : " << result << endl;
+    leftRotate(arr,3);
+    for(int j = 0; j<arr.size();j++){
+        cout<<arr[j]<<" ";
+    }
+    cout<<endl;
+
 
 }
