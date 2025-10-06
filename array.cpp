@@ -214,15 +214,26 @@ void rotatebyk(vector<int>& arr, int k){
 }
 
 
+void moveZeroes(vector<int>& arr){
+    int lastnonZero = 0;
+    for(int i =  0; i<arr.size();i++){
+        if(arr[i]!=0){
+            swap(arr[i],arr[lastnonZero]);
+            lastnonZero++;
+        }
+    }
+}
+
+
 
 
 
 
 int main(){
-    vector<int> arr = {1,2,3,4,5,6,7};
+    vector<int> arr = {1,0,3,4,0,6,7};
     int target = 7;
 
-    leftRotate(arr,3);
+    moveZeroes(arr);
     for(int j = 0; j<arr.size();j++){
         cout<<arr[j]<<" ";
     }
